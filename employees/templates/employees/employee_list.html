@@ -1,0 +1,51 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}Employees{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row flex-row-reverse ">
+            {% for employee in employees %}
+                <div class="card m-2" style="max-width: 45%">
+                    <div class="row g-0 h-100" dir="rtl">
+
+                        <div class="col-md-4">
+
+
+                        </div>
+                        <div class="col-md-8 h-100">
+                            <div class="d-flex flex-column justify-content-between h-100">
+                                <div class="card-body">
+                                    <h3 class="card-title "><strong>{{ employee.user.last_name }}</strong></h3>
+                                    <h3 class="card-title "><strong>{{ employee.phone_number }}</strong></h3>
+                                    <h3 class="card-title "><strong>{{ employee.position }}</strong></h3>
+                                    <h3 class="card-title "><strong>{{ employee.salary }}</strong></h3>
+
+                                    <a class="float-start text-success" href="{{ employee.get_absolute_url }}">more detail
+                                        </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination d-flex justify-content-center mt-3">
+            {% if  page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                </li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+
+            {% endif %}
+        </ul>
+    </nav>
+
+{% endblock %}

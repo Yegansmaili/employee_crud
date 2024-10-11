@@ -1,0 +1,38 @@
+{% extends '_base.html' %}
+{% block title %}{{ employee.user.last_name }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-5" dir="rtl">
+        <div class="">
+            <div class="">
+                <div class="d-flex justify-content-center">
+                    <div class="row w-sm-75 w-100">
+                        <div class="col-xs-12 col-md-3 d-flex justify-content-center">
+
+                        </div>
+                        <div class="col-xs-12 col-md-6 text-center text-md-end mt-md-1 mt-4">
+                            <h3>{{ employee.user.last_name }}</h3>
+                            <h3>{{ employee.phone_number }}</h3>
+                          <h3>{{ employee.user.email }}</h3>
+                        <h3>{{ employee.position }}</h3>
+                        <h3>{{ employee.salary }}</h3>
+                        <h3>{{ employee.start_date}}</h3>
+
+                            {% if user.is_staff %}
+                                <a href="{% url 'employee_update' employee.pk %}"
+                                   class="text-decoration-none text-warning">update</a>
+                                <span> | </span>
+                                <a href="{% url 'employee_delete' employee.pk %}"
+                                   class="text-decoration-none text-danger ">delete</a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+
+                </div>
+
+
+            </div>
+        </div>
+{% endblock %}
